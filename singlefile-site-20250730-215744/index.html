@@ -1,0 +1,1095 @@
+```html
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevXpert — Transforming Innovative Ideas into Powerful Digital Solutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #007bff;
+      --secondary: #ff4db8;
+      --text: #007bff;
+      --bg: #ffffff;
+      --surface: #ffffff;
+      --muted: #6c757d;
+      --muted-strong: #2b2f33;
+      --divider: #eef2f7;
+      --shadow: 0 10px 30px rgba(0,0,0,.08);
+      --shadow-hover: 0 20px 40px rgba(0,0,0,.15);
+      --radius: 16px;
+      --header-h: 76px;
+      --whatsapp: #25D366;
+      --overlay: rgba(0,0,0,.42);
+    }
+
+    html[data-theme="dark"] {
+      --primary: #3a86ff;
+      --secondary: #ff4db8;
+      --text: #f8f9fa;
+      --bg: #121212;
+      --surface: #1e1e1e;
+      --muted: #adb5bd;
+      --muted-strong: #e9ecef;
+      --divider: #2d2d2d;
+      --shadow: 0 10px 30px rgba(0,0,0,.3);
+      --shadow-hover: 0 20px 40px rgba(0,0,0,.4);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      cursor: url("https://i.postimg.cc/85mcxT9H/image.png") 12 12, auto;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+
+    :is(h1, h2, h3, h4, h5, h6, p, a, span, li, button):hover {
+      color: var(--secondary);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      background: none;
+      border: none;
+      font: inherit;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    section {
+      padding: 64px 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 24px;
+    }
+
+    .col-4 {
+      grid-column: span 4;
+    }
+
+    @media (max-width: 1100px) {
+      .col-4 {
+        grid-column: span 6;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .col-4 {
+        grid-column: span 12;
+      }
+    }
+
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: var(--header-h);
+      background-color: rgba(var(--surface), 0.8);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--divider);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    .header__inner {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand .dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 50%;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav__list {
+      display: flex;
+      gap: 16px;
+      list-style: none;
+    }
+
+    .nav__link {
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 100px;
+      transition: all 0.3s ease;
+    }
+
+    .nav__link.active {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+    }
+
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+    }
+
+    .theme-toggle__btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      transition: transform 0.3s ease;
+    }
+
+    .theme-toggle__btn:hover {
+      transform: rotate(180deg);
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      align-items: center;
+      justify-content: center;
+      z-index: 101;
+    }
+
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 80%;
+      max-width: 400px;
+      height: 100vh;
+      background-color: var(--surface);
+      box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+      z-index: 100;
+      transition: right 0.3s ease;
+      padding: 100px 30px 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .mobile-nav.open {
+      right: 0;
+    }
+
+    .mobile-nav__list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .mobile-nav__link {
+      font-size: 1.2rem;
+      font-weight: 500;
+      padding: 12px 20px;
+      border-radius: var(--radius);
+      transition: all 0.3s ease;
+    }
+
+    .mobile-nav__link.active {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+    }
+
+    .backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--overlay);
+      z-index: 99;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .backdrop.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .hero {
+      min-height: 100vh;
+      padding-top: var(--header-h);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding-bottom: 60px;
+      }
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero__title {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 24px;
+    }
+
+    .hero__lead {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 600px;
+      margin-bottom: 32px;
+    }
+
+    .hero__cta {
+      display: flex;
+      gap: 16px;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      border-radius: 100px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .btn--primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+    }
+
+    .btn--primary:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .btn--outline {
+      border: 2px solid var(--primary);
+    }
+
+    .btn--outline:hover {
+      background-color: var(--primary);
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .hero__art {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero__frame {
+      width: 100%;
+      max-width: 500px;
+      aspect-ratio: 1/1;
+      border-radius: var(--radius);
+      border: 8px solid transparent;
+      background: 
+        linear-gradient(var(--surface), var(--surface)) padding-box,
+        conic-gradient(from 180deg, var(--primary), var(--secondary), var(--primary)) border-box;
+      overflow: hidden;
+      transition: all 0.5s ease;
+    }
+
+    .hero__frame:hover {
+      transform: scale(1.05);
+      filter: saturate(1.2);
+    }
+
+    .hero__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .float {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.7;
+      z-index: 1;
+    }
+
+    .float.f1 {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, var(--primary), transparent 70%);
+      top: 10%;
+      left: -10%;
+      animation: drift 20s linear infinite;
+    }
+
+    .float.f2 {
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, var(--secondary), transparent 70%);
+      bottom: 10%;
+      right: -5%;
+      animation: drift 25s linear infinite reverse;
+    }
+
+    .float.f3 {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, var(--primary), transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: drift 30s linear infinite;
+    }
+
+    .shape {
+      position: absolute;
+      z-index: 1;
+    }
+
+    .shape.circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      top: 20%;
+      right: 15%;
+      animation: floaty 6s ease-in-out infinite, wobble 3s ease-in-out infinite;
+    }
+
+    .shape.triangle {
+      width: 0;
+      height: 0;
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-bottom: 40px solid var(--secondary);
+      bottom: 20%;
+      left: 10%;
+      animation: floaty 8s ease-in-out infinite, wobble 4s ease-in-out infinite;
+    }
+
+    @keyframes drift {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      25% { transform: translate(50px, 50px) rotate(90deg); }
+      50% { transform: translate(100px, 0) rotate(180deg); }
+      75% { transform: translate(50px, -50px) rotate(270deg); }
+      100% { transform: translate(0, 0) rotate(360deg); }
+    }
+
+    @keyframes floaty {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    @keyframes wobble {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(5deg); }
+      75% { transform: rotate(-5deg); }
+    }
+
+    .section-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 48px;
+    }
+
+    .card {
+      background-color: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--divider);
+      overflow: hidden;
+      transition: all 0.3s ease;
+      transform-style: preserve-3d;
+      perspective: 1000px;
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow-hover);
+    }
+
+    .card__img {
+      position: relative;
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .card__img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .card:hover .card__img img {
+      transform: scale(1.1);
+    }
+
+    .card__img::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .card:hover .card__img::after {
+      opacity: 1;
+    }
+
+    .card__content {
+      padding: 24px;
+    }
+
+    .card__title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .card__desc {
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .card__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .card__link:hover {
+      color: var(--secondary);
+    }
+
+    .team {
+      background-color: var(--surface);
+      border-top: 1px solid var(--divider);
+    }
+
+    .team-member {
+      text-align: center;
+      padding: 24px;
+    }
+
+    .team-member__img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--divider);
+      margin: 0 auto 16px;
+      transition: all 0.3s ease;
+    }
+
+    .team-member:hover .team-member__img {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .team-member__name {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .team-member__role {
+      color: var(--muted);
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .about {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .about__content {
+      margin-bottom: 24px;
+    }
+
+    .about__figure {
+      display: flex;
+      justify-content: center;
+    }
+
+    .about__img {
+      max-width: 100%;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .contact__info {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    @media (max-width: 700px) {
+      .contact__info {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .info-tile {
+      background-color: var(--surface);
+      border-radius: var(--radius);
+      padding: 24px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+    }
+
+    .info-tile:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .info-tile__icon {
+      font-size: 2rem;
+      margin-bottom: 16px;
+      color: var(--primary);
+    }
+
+    .info-tile__title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .info-tile__text {
+      color: var(--muted);
+    }
+
+    .form {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: var(--radius);
+      border: 1px solid var(--divider);
+      background-color: var(--surface);
+      color: var(--text);
+      font-family: inherit;
+      transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(var(--primary), 0.2);
+    }
+
+    textarea.form-control {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .form-note {
+      margin-top: 16px;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .footer {
+      background-color: var(--surface);
+      border-top: 1px solid var(--divider);
+      padding: 32px 0;
+      text-align: center;
+    }
+
+    .footer__copy {
+      margin-bottom: 16px;
+    }
+
+    .footer__social {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .social-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: var(--divider);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .social-link:hover {
+      background-color: var(--primary);
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    .back-to-top {
+      display: inline-block;
+      margin-top: 24px;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .back-to-top:hover {
+      color: var(--secondary);
+    }
+
+    .whatsapp-fab {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: var(--whatsapp);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow);
+      z-index: 99;
+      transition: all 0.3s ease;
+    }
+
+    .whatsapp-fab:hover {
+      transform: scale(1.1);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .whatsapp-icon {
+      width: 30px;
+      height: 30px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+
+    .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .cursor-trail {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: red;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      mix-blend-mode: screen;
+    }
+
+    @media (max-width: 1000px) {
+      .nav__list {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal {
+        transition: none !important;
+        opacity: 1;
+        transform: none !important;
+      }
+
+      .float, .shape {
+        animation: none !important;
+        opacity: 0.2;
+      }
+
+      .card:hover {
+        transform: none !important;
+      }
+
+      .hero__frame:hover {
+        transform: none !important;
+        filter: none !important;
+      }
+
+      .team-member:hover .team-member__img {
+        transform: none !important;
+      }
+
+      .whatsapp-fab:hover {
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header-->
+  <header class="header">
+    <div class="container header__inner">
+      <a href="#home" class="brand">
+        <span class="dot"></span>
+        DevXpert
+      </a>
+
+      <nav class="nav">
+        <ul class="nav__list">
+          <li><a href="#home" class="nav__link" data-scroll>Home</a></li>
+          <li><a href="#web" class="nav__link" data-scroll>Web</a></li>
+          <li><a href="#android" class="nav__link" data-scroll>Android</a></li>
+          <li><a href="#team" class="nav__link" data-scroll>Team</a></li>
+          <li><a href="#about" class="nav__link" data-scroll>About</a></li>
+          <li><a href="#contact" class="nav__link" data-scroll>Contact</a></li>
+        </ul>
+
+        <div class="theme-toggle">
+          <span>Choose Theme:</span>
+          <button class="theme-toggle__btn" aria-label="Toggle theme" aria-pressed="false">
+            <span class="theme-icon">🌙</span>
+          </button>
+        </div>
+      </nav>
+
+      <button class="menu-toggle" aria-label="Toggle menu">
+        <span>☰</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="backdrop"></div>
+
+  <nav class="mobile-nav">
+    <ul class="mobile-nav__list">
+      <li><a href="#home" class="mobile-nav__link" data-scroll>Home</a></li>
+      <li><a href="#web" class="mobile-nav__link" data-scroll>Web</a></li>
+      <li><a href="#android" class="mobile-nav__link" data-scroll>Android</a></li>
+      <li><a href="#team" class="mobile-nav__link" data-scroll>Team</a></li>
+      <li><a href="#about" class="mobile-nav__link" data-scroll>About</a></li>
+      <li><a href="#contact" class="mobile-nav__link" data-scroll>Contact</a></li>
+    </ul>
+
+    <div class="theme-toggle">
+      <span>Choose Theme:</span>
+      <button class="theme-toggle__btn" aria-label="Toggle theme" aria-pressed="false">
+        <span class="theme-icon">🌙</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section id="home" class="hero">
+    <div class="hero__content">
+      <h1 class="hero__title reveal">Transforming Innovative Ideas into Powerful Digital Solutions</h1>
+      <p class="hero__lead reveal">We specialize in creating cutting-edge web and mobile applications that help businesses grow and reach their full potential. Our team of experts delivers high-quality solutions tailored to your specific needs.</p>
+      <div class="hero__cta">
+        <a href="#web" class="btn btn--primary reveal" data-scroll>Explore Web</a>
+        <a href="#android" class="btn btn--outline reveal" data-scroll>Explore Android</a>
+      </div>
+    </div>
+
+    <div class="hero__art reveal">
+      <div class="hero__frame">
+        <img src="https://i.postimg.cc/cHtmCGmw/518816713-1375016674187721-4603359020444046090-n.jpg" alt="Digital solutions illustration">
+      </div>
+    </div>
+
+    <div class="float f1"></div>
+    <div class="float f2"></div>
+    <div class="float f3"></div>
+    <div class="shape circle"></div>
+    <div class="shape triangle"></div>
+  </section>
+
+  <!-- Web Solutions -->
+  <section id="web" class="section">
+    <div class="container">
+      <h2 class="section-title reveal">Web Solutions</h2>
+      <p class="section-subtitle reveal">We build responsive, fast, and secure websites that deliver exceptional user experiences across all devices.</p>
+
+      <div class="grid">
+        <div class="col-4 reveal">
+          <div class="card">
+            <div class="card__img">
+              <img src="https://i.postimg.cc/y854v0bX/524323271-4068420420093743-1583064092891422652-n.jpg" alt="Web development">
+            </div>
+            <div class="card__content">
+              <h3 class="card__title">Web Development</h3>
+              <p class="card__desc">Custom web applications built with modern technologies to solve your business challenges.</p>
+              <a href="#contact" class="card__link" data-scroll>Get Started</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4 reveal">
+          <div class="card">
+            <div class="card__img">
+              <img src="https://i.postimg.cc/66S34G9R/phone.png" alt="Single page website">
+            </div>
+            <div class="card__content">
+              <h3 class="card__title">Quick Single Page Website</h3>
+              <p class="card__desc">Perfect for small businesses and personal portfolios. <em>(QR code complementary)</em></p>
+              <a href="#contact" class="card__link" data-scroll>Get Started</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4 reveal">
+          <div class="card">
+            <div class="card__img">
+              <img src="https://i.postimg.cc/T1ZYzBkQ/web-template.jpg" alt="Template website">
+            </div>
+            <div class="card__content">
+              <h3 class="card__title">Template-Based Multiple Page Website</h3>
+              <p class="card__desc">Professional websites using premium templates for faster delivery. <em>(QR code complementary)</em></p>
+              <a href="#contact" class="card__link" data-scroll>Get Started</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4 reveal">
+          <div class="card">
+            <div class="card__img">
+              <img src="https://i.postimg.cc/cCKL5dcr/web-fully-customised.jpg" alt="Custom website">
+            </div>
+            <div class="card__content">
+              <h3 class="card__title">Fully Customized Website</h3>
+              <p class="card__desc">Unique design and functionality tailored specifically to your brand and requirements.</p>
+              <a href="#contact" class="card__link" data-scroll>Get Started</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Android Solutions -->
+  <section id="android" class="section">
+    <div class="container">
+      <h2 class="section-title reveal">Android Solutions</h2>
+      <p class="section-subtitle reveal">Powerful mobile applications that engage users and drive business growth on the Android platform.</p>
+
+      <div class="grid">
+        <div class="col-4 reveal">
+          <div class="card">
+            <div class="card__img">
+              <img src="https://i.postimg.cc/5y3W3Gh6/525619828-1073947794947645-2035864620789612177-n.jpg" alt="Android app development">
+            </div>
+            <div class="card__content">
+              <h3 class="card__title">Android App Development</h3>
+              <p class="card__desc">Native Android applications built with Kotlin and Jetpack for optimal performance.</p>
+              <a href="#contact" class="card__link" data-scroll>Get Started</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4 reveal">
+          <div class="card">
+            <div class="card__img">
+              <img src="https://i.postimg.cc/k4L2CVGx/android-basic.jpg" alt="Basic records app">
+            </div>
+            <div class="card__content">
+              <h3 class="card__title">Basic Records Managing App (Offline)</h3>
+              <p class="card__desc">Simple apps for data management without internet connectivity requirements.</p>
+              <a href="#contact" class="card__link" data-scroll>Get Started</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4 reveal">
+          <div class="card">
+            <div class="card__img">
+              <img src="https://i.postimg.cc/63bQ08nk/android-online.jpg" alt="Online app">
+            </div>
+            <div class="card__content">
+              <h3 class="card__title">Online & Database Integrated App</h3>
+              <p class="card__desc">Apps with real-time data synchronization and cloud database integration.</p>
+              <a href="#contact" class="card__link" data-scroll>Get Started</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4 reveal">
+          <div class="card">
+            <div class="card__img">
+              <img src="https://i.postimg.cc/65vQr53P/goal.png" alt="Custom app">
+            </div>
+            <div class="card__content">
+              <h3 class="card__title">Fully Customized App</h3>
+              <p class="card__desc">Tailor-made applications with unique features designed specifically for your business needs.</p>
+              <a href="#contact" class="card__link" data-scroll>Get Started</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section id="team" class="team section">
+    <div class="container">
+      <h2 class="section-title reveal">Our Team</h2>
+      <p class="section-subtitle reveal">Meet the talented individuals behind DevXpert who make innovation happen.</p>
+
+      <div class="grid">
+        <div class="col-4 reveal">
+          <div class="team-member">
+            <img src="https://i.postimg.cc/cJjt5gSG/0b976f0a7aa1aa43870e1812eee5a55d.jpg" alt="Aklavya" class="team-member__img">
+            <h3 class="team-member__name">Aklavya</h3>
+            <p class="team-member__role">UI/UX Developer & Full-Stack Programmer</p>
+          </div>
+        </div>
+
+        <div class="col-4 reveal">
+          <div class="team-member">
+            <img src="https://i.postimg.cc/mgmmkwQ3/image.png" alt="Ashish" class="team-member__img">
+            <h3 class="team-member__name">Ashish</h3>
+            <p class="team-member__role">Marketing & Advertising Manager</p>
+          </div>
+        </div>
+
+        <div class="col-4 reveal">
+          <div class="team-member">
+            <img src="https://i.postimg.cc/9Q4jWr9f/3bdea5f546bb0eae992501ddbbb71394.jpg" alt="Ishesh" class="team-member__img">
+            <h3 class="team-member__name">Ishesh</h3>
+            <p class="team-member__role">Financial Manager & Overall Manager</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="section">
+    <div class="container about">
+      <div class="about__content">
+        <h2 class="section-title reveal">About DevXpert</h2>
+        <p class="reveal">DevXpert is a digital solutions provider dedicated to helping businesses transform their ideas into reality. With our expertise in web and mobile development, we create solutions that are not only visually appealing but also highly functional and user-friendly.</p>
+        <p class="reveal">Our approach combines innovative thinking with technical excellence to deliver products that exceed expectations. We believe in building long-term relationships with our clients by providing exceptional service and support throughout the development process and beyond.</p>
+        <a href="#contact" class="btn btn--primary reveal" data-scroll>Work With Us</a>
+      </div>
+
+      <div class="about__figure reveal">
+        <img src="https://i.post
