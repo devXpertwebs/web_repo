@@ -1,0 +1,1163 @@
+```html
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{BRAND_NAME}} | Digital Solutions</title>
+  <style>
+    :root {
+      --primary: #4361ee;
+      --primary-light: #4895ef;
+      --secondary: #3f37c9;
+      --dark: #1a1a2e;
+      --light: #f8f9fa;
+      --surface: #ffffff;
+      --surface-dark: #16213e;
+      --text: #333333;
+      --text-light: #f8f9fa;
+      --muted: #6c757d;
+      --divider: rgba(0, 0, 0, 0.1);
+      --divider-dark: rgba(255, 255, 255, 0.1);
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --shadow-dark: 0 4px 6px rgba(0, 0, 0, 0.3);
+      --glass: rgba(255, 255, 255, 0.8);
+      --glass-dark: rgba(30, 30, 30, 0.8);
+      --success: #4bb543;
+      --error: all 0.3s ease;
+      --radius: 12px;
+      --radius-sm: 6px;
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    [data-theme="dark"] {
+      --primary: #4895ef;
+      --primary-light: #4cc9f0;
+      --secondary: #4361ee;
+      --surface: #16213e;
+      --surface-dark: #0f172a;
+      --text: #f8f9fa;
+      --text-light: #f8f9fa;
+      --muted: #a8a8a8;
+      --divider: var(--divider-dark);
+      --shadow: var(--shadow-dark);
+      --glass: var(--glass-dark);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background-color: var(--surface);
+      transition: var(--transition);
+      overflow-x: hidden;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+
+    h1, h2, h3, h4 {
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      position: relative;
+      display: inline-block;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+
+    p {
+      margin-bottom: 1.5rem;
+      color: var(--muted);
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    a:hover {
+      color: var(--primary-light);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      padding: 6rem 0;
+      position: relative;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: var(--primary);
+      color: white;
+      border-radius: var(--radius);
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      text-align: center;
+    }
+
+    .btn:hover {
+      background: var(--primary-light);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+    }
+
+    .btn-outline:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 1rem 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      background: var(--glass);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .brand::before {
+      content: '';
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background: var(--primary);
+      border-radius: 50%;
+      margin-right: 0.5rem;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .brand::before {
+        animation: none;
+      }
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      font-weight: 500;
+      color: var(--text);
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .theme-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text);
+      font-size: 1.2rem;
+      margin-left: 1rem;
+      transition: var(--transition);
+    }
+
+    .theme-toggle:hover {
+      color: var(--primary);
+      transform: rotate(30deg);
+    }
+
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text);
+      font-size: 1.5rem;
+      z-index: 1001;
+    }
+
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 80%;
+      max-width: 300px;
+      height: 100vh;
+      background: var(--surface);
+      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+      transition: var(--transition);
+      z-index: 1000;
+      padding: 5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .mobile-nav.active {
+      right: 0;
+    }
+
+    .mobile-nav a {
+      font-size: 1.2rem;
+      color: var(--text);
+    }
+
+    .backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(5px);
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--transition);
+    }
+
+    .backdrop.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    @media (max-width: 1000px) {
+      .nav-links {
+        display: none;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 80px;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+    }
+
+    .hero h1 {
+      margin-bottom: 1.5rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      max-width: 600px;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.7;
+    }
+
+    .shape-1 {
+      width: 300px;
+      height: 300px;
+      background: var(--primary);
+      top: 20%;
+      left: 10%;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .shape-2 {
+      width: 200px;
+      height: 200px;
+      background: var(--secondary);
+      bottom: 20%;
+      right: 10%;
+      animation: float 6s ease-in-out infinite reverse;
+    }
+
+    .shape-3 {
+      width: 150px;
+      height: 150px;
+      background: var(--primary-light);
+      top: 50%;
+      right: 30%;
+      animation: float 10s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+      100% { transform: translateY(0) rotate(0deg); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .shape {
+        animation: none !important;
+      }
+    }
+
+    /* Cards */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      position: relative;
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-img {
+      height: 200px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 3rem;
+    }
+
+    .card-content {
+      padding: 1.5rem;
+    }
+
+    .card h3 {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Team */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      margin-top: 3rem;
+    }
+
+    .team-member {
+      text-align: center;
+    }
+
+    .avatar {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      margin: 0 auto 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 3rem;
+      font-weight: bold;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .team-member:hover .avatar {
+      transform: translateY(-10px);
+    }
+
+    .team-member h3 {
+      margin-bottom: 0.5rem;
+    }
+
+    .team-member p {
+      color: var(--muted);
+    }
+
+    /* About */
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .about-img {
+      height: 400px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .about-content {
+        grid-template-columns: 1fr;
+      }
+
+      .about-img {
+        height: 300px;
+        order: -1;
+      }
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .contact-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+    }
+
+    .contact-form {
+      background: var(--surface);
+      padding: 2rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--divider);
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      color: var(--text);
+      transition: var(--transition);
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+    }
+
+    textarea.form-control {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .form-note {
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin-top: 1rem;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--surface-dark);
+      color: var(--text-light);
+      padding: 3rem 0;
+      text-align: center;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .social-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .social-link:hover {
+      background: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    .copyright {
+      color: var(--muted);
+    }
+
+    /* WhatsApp FAB */
+    .whatsapp-fab {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 60px;
+      height: 60px;
+      background: #25D366;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      z-index: 999;
+      transition: var(--transition);
+    }
+
+    .whatsapp-fab:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Animations */
+    [data-animate] {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    [data-animate].animate {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+    .delay-4 { transition-delay: 0.4s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      [data-animate] {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+
+    /* Cursor effects */
+    .cursor {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--primary);
+      pointer-events: none;
+      mix-blend-mode: screen;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease;
+    }
+
+    .cursor-follower {
+      position: fixed;
+      width: 40px;
+      height: 40px;
+      border: 2px solid var(--primary);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: all 0.3s ease;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .cursor, .cursor-follower {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Cursor Effects -->
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+
+  <!-- Header -->
+  <header>
+    <div class="container header-container">
+      <a href="#home" class="brand">{{BRAND_NAME}}</a>
+      
+      <nav class="nav-links">
+        <a href="#home" class="active">Home</a>
+        <a href="#web">Web</a>
+        <a href="#android">Android</a>
+        <a href="#team">Team</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <button class="theme-toggle" aria-label="Toggle theme">🌓</button>
+      </nav>
+
+      <button class="menu-btn" aria-label="Menu">☰</button>
+    </div>
+  </header>
+
+  <!-- Mobile Nav -->
+  <div class="mobile-nav">
+    <a href="#home">Home</a>
+    <a href="#web">Web</a>
+    <a href="#android">Android</a>
+    <a href="#team">Team</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+    <button class="theme-toggle" aria-label="Toggle theme">🌓</button>
+  </div>
+  <div class="backdrop"></div>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+    
+    <div class="container">
+      <div class="hero-content" data-animate>
+        <h1>Building Digital Experiences That Matter</h1>
+        <p>We create innovative web and mobile solutions tailored to your business needs, helping you stand out in the digital landscape.</p>
+        <div class="hero-btns">
+          <a href="#contact" class="btn">Get Started</a>
+          <a href="#web" class="btn btn-outline">Our Work</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Web Solutions -->
+  <section id="web">
+    <div class="container">
+      <div class="section-title" data-animate>
+        <h2>Web Solutions</h2>
+        <p>Custom web applications and websites designed for performance and user experience.</p>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card" data-animate>
+          <div class="card-img">🌐</div>
+          <div class="card-content">
+            <h3>{{WEB_CARD_1_TITLE}}</h3>
+            <p>{{WEB_CARD_1_TEXT}}</p>
+          </div>
+        </div>
+
+        <div class="card" data-animate="delay-1">
+          <div class="card-img">🛒</div>
+          <div class="card-content">
+            <h3>{{WEB_CARD_2_TITLE}}</h3>
+            <p>{{WEB_CARD_2_TEXT}}</p>
+          </div>
+        </div>
+
+        <div class="card" data-animate="delay-2">
+          <div class="card-img">📊</div>
+          <div class="card-content">
+            <h3>{{WEB_CARD_3_TITLE}}</h3>
+            <p>{{WEB_CARD_3_TEXT}}</p>
+          </div>
+        </div>
+
+        <div class="card" data-animate="delay-3">
+          <div class="card-img">🔒</div>
+          <div class="card-content">
+            <h3>{{WEB_CARD_4_TITLE}}</h3>
+            <p>{{WEB_CARD_4_TEXT}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Android Solutions -->
+  <section id="android" class="bg-light">
+    <div class="container">
+      <div class="section-title" data-animate>
+        <h2>Android Solutions</h2>
+        <p>Native mobile applications built for performance and engagement.</p>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card" data-animate>
+          <div class="card-img">📱</div>
+          <div class="card-content">
+            <h3>{{APP_CARD_1_TITLE}}</h3>
+            <p>{{APP_CARD_1_TEXT}}</p>
+          </div>
+        </div>
+
+        <div class="card" data-animate="delay-1">
+          <div class="card-img">💳</div>
+          <div class="card-content">
+            <h3>{{APP_CARD_2_TITLE}}</h3>
+            <p>{{APP_CARD_2_TEXT}}</p>
+          </div>
+        </div>
+
+        <div class="card" data-animate="delay-2">
+          <div class="card-img">🏃</div>
+          <div class="card-content">
+            <h3>{{APP_CARD_3_TITLE}}</h3>
+            <p>{{APP_CARD_3_TEXT}}</p>
+          </div>
+        </div>
+
+        <div class="card" data-animate="delay-3">
+          <div class="card-img">🎮</div>
+          <div class="card-content">
+            <h3>{{APP_CARD_4_TITLE}}</h3>
+            <p>{{APP_CARD_4_TEXT}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section id="team">
+    <div class="container">
+      <div class="section-title" data-animate>
+        <h2>Our Team</h2>
+        <p>The talented individuals behind our success.</p>
+      </div>
+
+      <div class="team-grid">
+        <div class="team-member" data-animate>
+          <div class="avatar">{{TEAM_1_NAME | first_letter}}</div>
+          <h3>{{TEAM_1_NAME}}</h3>
+          <p>{{TEAM_1_ROLE}}</p>
+        </div>
+
+        <div class="team-member" data-animate="delay-1">
+          <div class="avatar">{{TEAM_2_NAME | first_letter}}</div>
+          <h3>{{TEAM_2_NAME}}</h3>
+          <p>{{TEAM_2_ROLE}}</p>
+        </div>
+
+        <div class="team-member" data-animate="delay-2">
+          <div class="avatar">{{TEAM_3_NAME | first_letter}}</div>
+          <h3>{{TEAM_3_NAME}}</h3>
+          <p>{{TEAM_3_ROLE}}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container">
+      <div class="about-content">
+        <div data-animate>
+          <h2>About Us</h2>
+          <p>{{ABOUT_LEAD_PARAGRAPH}}</p>
+          <p>{{ABOUT_SECOND_PARAGRAPH}}</p>
+          <a href="#contact" class="btn" style="margin-top: 1rem;">Contact Us</a>
+        </div>
+        <div class="about-img" data-animate="delay-1">📈</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-title" data-animate>
+        <h2>Get In Touch</h2>
+        <p>We'd love to hear about your project and how we can help.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info" data-animate>
+          <div class="contact-item">
+            <div class="contact-icon">✉️</div>
+            <div>
+              <h3>Email</h3>
+              <a href="mailto:{{CONTACT_EMAIL}}">{{CONTACT_EMAIL}}</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">📞</div>
+            <div>
+              <h3>Phone</h3>
+              <a href="tel:{{CONTACT_PHONE}}">{{CONTACT_PHONE}}</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div>
+              <h3>Location</h3>
+              <p>{{CONTACT_LOCATION}}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form" data-animate="delay-1">
+          <form id="contactForm">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" class="form-control" required></textarea>
+            </div>
+            <button type="submit" class="btn">Send Message</button>
+            <p class="form-note">We'll get back to you as soon as possible.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <a href="#home" class="brand">{{BRAND_NAME}}</a>
+        <div class="social-links">
+          <a href="{{SOCIAL_URL}}" class="social-link" aria-label="Instagram">📸</a>
+        </div>
+        <p class="copyright">© <span id="year"></span> {{BRAND_NAME}}. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp FAB -->
+  <a href="https://wa.me/{{WHATSAPP_NUMBER}}" class="whatsapp-fab" aria-label="Chat on WhatsApp">💬</a>
+
+  <script>
+    // Theme Toggle
+    const themeToggle = document.querySelector('.theme-toggle');
+    const html = document.documentElement;
+    const theme = localStorage.getItem('theme');
+
+    if (theme) {
+      html.setAttribute('data-theme', theme);
+      updateThemeButton(theme);
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateThemeButton(newTheme);
+    });
+
+    function updateThemeButton(theme) {
+      themeToggle.textContent = theme === 'light' ? '🌙' : '☀️';
+    }
+
+    // Mobile Menu
+    const menuBtn = document.querySelector('.menu-btn');
+    const mobileNav = document.querySelector('.mobile-nav');
+    const backdrop = document.querySelector('.backdrop');
+
+    menuBtn.addEventListener('click', () => {
+      mobileNav.classList.toggle('active');
+      backdrop.classList.toggle('active');
+      document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+    });
+
+    backdrop.addEventListener('click', () => {
+      mobileNav.classList.remove('active');
+      backdrop.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const target = document.querySelector(targetId);
+        if (target) {
+          // Close mobile menu if open
+          mobileNav.classList.remove('active');
+          backdrop.classList.remove('active');
+          document.body.style.overflow = '';
+          
+          window.scrollTo({
+            top: target.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Scroll spy for active nav link
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-links a, .mobile-nav a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        
+        if (pageYOffset >= sectionTop - 100) {
+          current = section.getAttribute('id');
+        }
+      });
+      
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // Intersection Observer for animations
+    const animateElements = document.querySelectorAll('[data-animate]');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    animateElements.forEach(el => observer.observe(el));
+
+    // Contact Form
+    const contactForm = document.getElementById('contactForm');
+    const formNote = document.querySelector('.form-note');
+
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+      
+      if (!name || !email || !message) {
+        formNote.textContent = 'Please fill in all fields.';
+        formNote.style.color = 'var(--error)';
+        return;
+      }
+      
+      const subject = `Contact from {{BRAND_NAME}} website`;
+      const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0AMessage: ${message}`;
+      
+      window.location.href = `mailto:{{CONTACT_EMAIL}}?subject=${subject}&body=${body}`;
+      
+      // Fallback message
+      setTimeout(() => {
+        formNote.textContent = "If your email client didn't open, please send your message directly to {{CONTACT_EMAIL}}";
+        formNote.style.color = 'var(--muted)';
+        contactForm.reset();
+      }, 2000);
+    });
+
+    // Current year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Card tilt effect
+    const cards = document.querySelectorAll('.card');
+    
+    cards.forEach(card => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const angleX = (y - centerY) / 20;
+        const angleY = (centerX - x) / 20;
+        
+        card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg)`;
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+      });
+    });
+
+    // Cursor effects
+    const cursor = document.querySelector('.cursor');
+    const cursorFollower = document.querySelector('.cursor-follower');
+    
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.addEventListener('mousemove', (e) => {
+        cursor.style.left = `${e.clientX}px`;
+        cursor.style.top = `${e.clientY}px`;
+        
+        setTimeout(() => {
+          cursorFollower.style.left = `${e.clientX}px`;
+          cursorFollower.style.top = `${e.clientY}px`;
+        }, 100);
+      });
+      
+      document.addEventListener('click', () => {
+        cursor.style.transform = 'scale(0.5)';
+        setTimeout(() => {
+          cursor.style.transform = 'scale(1)';
+        }, 300);
+      });
+      
+      // Cursor hover effects
+      const hoverElements = document.querySelectorAll('a, button, .card, .social-link, .whatsapp-fab');
+      
+      hoverElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          cursor.style.transform = 'scale(2)';
+          cursorFollower.style.transform = 'scale(0.5)';
+        });
+        
+        el.addEventListener('mouseleave', () => {
+         
